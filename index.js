@@ -1,24 +1,28 @@
-const canvas = d3.select(".canvas");
+// d3 expects data in an array format
+const data = [
+    {width:200,height:100, fill:'purple'},
+    // {width:100,height:60, fill:'pink'},
+    // {width:50,height:30, fill:'red'}
+]
 
-const svg = canvas.append('svg')
-    .attr('height', 600)
-    .attr('width', 600);
+// get a reference to the svg first almost always
+const svg = d3.select('svg')
 
-//append shapes to svg container
-svg.append('rect')
-    .attr('width',200)
-    .attr('height', 100)
-    .attr('fill', 'blue')
-    .attr('x', '20')
-    .attr('y', 20);
-svg.append('circle')
-    .attr('r', 50)
-    .attr('cx', 60)
-    .attr('cy', 25)
-    .attr('fill', 'red');
-svg.append('line')
-    .attr('x1', 370)
-    .attr('x2', 400)
-    .attr('y1', 20)
-    .attr('y2', 120)
-    .attr('stroke', 'red');
+const rect = svg.select('rect')
+    // join data to the element
+    // on the rect's props there is a __data__ that is given the data we specified
+    .data(data)
+    .attr('width', (d, i, n)=>{ 
+        console.log('d', d)
+        // index of the element we are on in the selection
+        console.log('i', i)
+        console.log('n', n)
+        console.log('n[i] is the same as "this"', n[i])
+        return d.width
+    })
+    .attr('height', d => d.height)
+    .attr('fill', function(d){
+        return d.fill
+    })
+
+console.log(rect)
