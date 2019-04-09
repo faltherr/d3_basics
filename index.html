@@ -7,37 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <!-- Set the width and height of the drawing board -->
-    <svg width='600' height='600'>
-        <!-- Nest all shapes in the container here -->
+    <div class='canvas'></div>
 
-        <!-- RECTANGLE -->
-        <!-- We need to give this custom tags a width and a height and some color -->
-        <!-- x means where we want to position an element relative to the left of the canvas -->
-        <!-- 0 is on the border 400 is 400px from the left --> 
-        <!-- y is relative to the top of the canvas -->
-        <!-- <rect x='300' y='100' fill='blue' width='100' height='200'></rect> -->
-
-        <!-- CIRCLE -->
-        <!-- cx and cy refer to the center of the circle -->
-        <!-- r refers to the radius -->
-        <!-- stroke is the outline -->
-        <!-- stroke-width changes the size of the line -->
-        <!-- <circle cx="200" cy="200" r="50" fill="pink" stroke="red" stroke-width="2"></circle> -->
-
-        <!-- LINE -->
-        <!-- line requires a start and an end specified in x and y -->
-        <!-- lines do not have a fill use stroke -->
-        <!-- <line x1="100" y1="100" x2="120" y2="300" stroke='grey' stroke-width="3"></line> -->
-
-        <!-- PATH -->
-        <!-- <path d="M150 50 L75 200 L225 200 Z" fill="orange"></path> -->
-
-        <!-- Now curve the path -->
-        <!-- 3 sets of coordinates are required -->
-        <path d="M150 50 L75 200 L225 200 C 225 200 150 150 150 50" fill="orange"></path>
-        <circle cx="150" cy="150" r="5" fill="grey"></circle>
-        <line x1="225" y1="200" x2="150" y2="150" stroke='grey'></line>
-    </svg>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
