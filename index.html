@@ -10,6 +10,23 @@
     <div class='canvas'>'
     </div>
 
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-firestore.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBhC_FS8Mjgw1CA3aAVHcQBtvkh6Q3F_dM",
+        authDomain: "udemy-d3-firebase-d2375.firebaseapp.com",
+        databaseURL: "https://udemy-d3-firebase-d2375.firebaseio.com",
+        projectId: "udemy-d3-firebase-d2375",
+        storageBucket: "udemy-d3-firebase-d2375.appspot.com",
+        messagingSenderId: "868480833024"
+    };
+    firebase.initializeApp(config);
+    const db = firebase.firestore();
+    db.settings({timestampsInSnapshots: true})
+    </script>
     <script src="https://d3js.org/d3.v5.js"></script>
     <script src="index.js"></script>
 </body>
