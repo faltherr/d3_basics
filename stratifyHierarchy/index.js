@@ -25,9 +25,50 @@ const data = [
     { name: 'pop', parent: 'music', amount: 3 },
     { name: 'classical', parent: 'music', amount: 5 },
   ];
+
+const svg = d3.select('.canvas')
+  .append('svg')
+  .attr('width', 1060)
+  .attr('height', 800)
+
+const graph = svg.append('g')
+  .attr('transform', `translate(50,50)`); // Give a 50px margin
   
-  const stratify = d3.stratify()
-    .id(d => d.name)
-    .parentId(d => d.parent);
-  
-  console.log(stratify(data));
+const stratify = d3.stratify()
+  .id(d => d.name)
+  .parentId(d => d.parent);
+
+const rootNode = stratify(data)
+  .sum(d => d.amount);
+
+const pack = d3.pack()
+  .size([960,700])
+  .padding(5)
+
+const bubbleData = pack(rootNode).descendants()
+console.log(bubbleData)
+// CreaTE  ordinal scale
+const colorBubb = d3.scaleOrdinal(['#d1c4e9', '#b39ddb', '#9575cd'])
+
+// join data and add group for each node
+
+const nodes = graph.selectAll('g')
+  .data(bubbleData)
+  .enter()
+  .append('g')
+  .attr('transform', d => `translate(${d.x}, ${d.y})`)
+
+nodes.append('circle')
+  .attr('r', d => d.r)
+  .attr('stroke', 'white')
+  .attr('stroke-width', 2)
+  // Return a different color based on the depth of the item
+  .attr('fill', d => colorBubb(d.depth))
+
+nodes.filter(d => !d.children)
+  .append('text')
+  .attr('text-anchor', 'middle')
+  .attr('dy', '0.3em')
+  .attr('fill', 'white')
+  .style('font-size', d => d.value * 5) // Larger values = larger font size
+  .text(d => d.data.name)
